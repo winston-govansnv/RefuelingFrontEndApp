@@ -1,0 +1,42 @@
+<mat-toolbar class="bar">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="toggleSideBar()" *ngIf="isMenuIconActive">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <span>IFUEL</span>&nbsp;&nbsp;<span style="font-size: 0.6em;font-style: italic;margin-top: 0.5em;">REFUELING PLATFORM</span>
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+            <ul fxLayout="row"> 
+                <li>
+                    <button mat-icon-button>
+                        <mat-icon>settings</mat-icon>
+                    </button>
+                </li>
+
+                <li>
+                    <button mat-icon-button>
+                        <mat-icon>help_outline</mat-icon>
+                    </button>
+                </li>
+                <li>
+  
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <mat-icon>person_outline</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item >
+                            <mat-icon>perm_identity</mat-icon>
+                            winston@govansnv.com
+                        </button>
+                    <button mat-menu-item (click)="signOut()">
+                        <mat-icon>exit_to_app</mat-icon>
+                        Sign out
+                    </button>
+                    </mat-menu>
+                </li>
+            </ul>
+
+        </div>
+    </mat-toolbar-row>
+
+</mat-toolbar>

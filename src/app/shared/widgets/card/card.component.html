@@ -1,0 +1,29 @@
+<div class="text">
+    <h4>{{ label }}</h4>
+    <span class="total">{{total }}</span>
+
+    <span>
+        <mat-icon color="primary">{{trendingUp===true?'trending_up':'trending_down'}}</mat-icon>
+    </span>
+
+    <span class="description">
+        {{ percentage}}
+    </span>
+
+
+</div>
+<div class="flex-row" >
+    <canvas
+        baseChart
+        [chartType]="'line'"
+        [datasets]="chartData"
+        [labels]="labels"
+        [options]="chartOptions"
+        [legend]="true"
+        [colors]="colors"
+       >
+    </canvas>
+  </div>
+
+
+

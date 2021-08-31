@@ -1,0 +1,132 @@
+<mat-card>    
+    <!-- Title of an Card -->    
+    <mat-card-title>    
+        Delivery details   
+    </mat-card-title>    
+    
+    <mat-card-content>    
+        <form>    
+            <table>    
+                <tr>    
+                   
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Date" value="{{elem.deliveryDate| date}}" readonly>    
+                        </mat-form-field>    
+                    </td>  
+                    
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Time" value="{{elem.fuelEndTime | date:'shortTime' }}" readonly>    
+                        </mat-form-field>    
+                    </td>  
+                </tr>    
+                <tr>                                         
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Truck" value="{{elem.truck }}" readonly>    
+                        </mat-form-field>    
+                    </td>    
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Driver badgnumber" value="{{elem.driver}}" readonly>    
+                        </mat-form-field>    
+                    </td>    
+                </tr> 
+                <tr>    
+                    <td colspan="2">    
+                        <mat-form-field class="demo-full-width">    
+                            <textarea matInput placeholder="Driver name" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"  value="{{elem.driverName}}" readonly></textarea>    
+                        </mat-form-field>    
+                    </td>    
+                </tr>    
+                <tr>    
+                    <td colspan="2">    
+                        <mat-form-field class="demo-full-width">    
+                            <textarea matInput placeholder="Company" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"  value="{{elem.customer}}" readonly></textarea>    
+                        </mat-form-field>    
+                    </td>    
+                </tr>    
+                <tr>    
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Start meter" value="{{elem.meterOpen}}" readonly>    
+                        </mat-form-field>    
+                    </td>  
+                    
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="End meter" value="{{elem.meterClose}}" readonly>    
+                        </mat-form-field>    
+                    </td>   
+                </tr>    
+               
+                <tr>    
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Payment type" value="{{elem.paymentName}}" readonly>    
+                        </mat-form-field>    
+                    </td>  
+                    
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Fuel type " value="{{elem.fuelType}}" readonly>      
+                        </mat-form-field>    
+                    </td>  
+                </tr>    
+                <!-- <tr>    
+                    <td colspan="2">    
+                        <mat-form-field class="demo-full-width">  
+                            <strong>
+                                <input matInput placeholder="Cost" value="" readonly type="text"> 
+                            </strong>  
+                              
+                        </mat-form-field>    
+                    </td>    
+                </tr>   -->
+                
+                <tr>    
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Total fueled (Liters)" value="{{elem.fuelLiters}}" readonly>    
+                        </mat-form-field>    
+                    </td>  
+                    
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Fuel Price (AWG) " value="{{elem.fuelPriceUsedOnDate}}" readonly>      
+                        </mat-form-field>    
+                    </td>  
+                </tr>    
+                <tr>    
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Number of extra points" value="0" readonly>    
+                        </mat-form-field>    
+                    </td>  
+                    
+                    <td>    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Small delivery fee (AWG) " value="{{elem.smallDeliveryFee | number:'2.2-5'}}" readonly>    
+                        </mat-form-field>    
+                    </td>  
+                </tr>    
+
+                <tr>    
+                    <td colspan="2">    
+                        <mat-form-field class="demo-full-width">    
+                            <input matInput placeholder="Cost (AWG)" value="{{elem.totalCostAWG | number:'3.2-5'}}" readonly>    
+                        </mat-form-field>    
+                    </td>  
+               
+                </tr>    
+
+                <tr>    
+                    <td colspan="2" class="content-center">      
+                        <button mat-raised-button color="accent" (click)="closeModal()">Close</button>    
+                    </td>    
+                </tr>    
+            </table>    
+        </form>    
+    </mat-card-content>    
+</mat-card>   

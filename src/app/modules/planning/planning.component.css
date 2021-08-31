@@ -1,0 +1,95 @@
+::ng-deep .dx-tooltip-wrapper .dx-overlay-content .dx-popup-content {
+    padding: 14px;
+}
+
+::ng-deep .showtime-preview > div:first-child {
+    font-size: 12px;
+    white-space: normal;
+}
+
+::ng-deep .showtime-preview > div:not(:first-child) {
+    font-size: 11px;
+    white-space: normal;
+}
+
+::ng-deep .movie-tooltip .movie-info {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
+    text-align: left;
+}
+
+::ng-deep .movie-tooltip img {
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+::ng-deep .movie-tooltip .movie-title {
+    font-size: 1.5em;
+    line-height: 40px;
+}
+
+::ng-deep .long-title h3 {
+    font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
+    font-weight: 200;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+ 
+
+.flex-container {
+    display: flex;
+  
+}
+
+
+ .flex-child {
+    flex: 1;
+    border: 0.2px solid rgb(241, 241, 241);
+    margin-left: 20px;
+    margin:0 auto;
+}  
+
+ /* .flex-child:first-child {
+    margin-right: 20px;
+}   */
+
+
+table {
+    width: 100%;
+}
+
+.box-shadow {
+   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.removeBorder{
+    border:0;
+ }
+
+ .white-icon {
+    color: white;
+}
+
+
+.readonly-wrapper {
+    cursor: not-allowed;
+}
+
+.readonly-wrapper .readonly-block {
+    pointer-events: none;
+}
+
+.delivered-color{
+    color: green;
+    font-weight: 500;
+}
+
+
+.pending-color{
+    color:blue;
+    font-weight: 500;
+}
+
+

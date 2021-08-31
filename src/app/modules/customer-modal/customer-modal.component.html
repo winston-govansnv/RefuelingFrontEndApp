@@ -1,0 +1,61 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <form  [formGroup]="ownerForm" (ngSubmit) = "onClickSubmit(ownerForm.value)" >
+      <mat-card fxFlex="100" fxFlex.xs="100%">
+      
+        <mat-card-title>{{elem ? 'Update customer information' : 'Add a new customer'}}</mat-card-title>
+        <mat-card-content >
+          
+            <mat-form-field [formGroup]="ownerForm" >
+                <input matInput type="text" placeholder="ClientName" formControlName="clientName" id="clientName" >
+                <mat-hint align="end">Not more then 60 characters long.</mat-hint>
+                <mat-error *ngIf="hasError('clientName', 'required')">Name is required</mat-error>
+                <mat-error *ngIf="hasError('clientName', 'maxlength')">You have more than 60 characters</mat-error>
+            </mat-form-field>
+
+            <mat-form-field [formGroup]="ownerForm">
+              <input matInput type="text" placeholder="CustId" formControlName="custId" id="custId"> 
+              <mat-hint align="end">Not more then 10 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('custId', 'required')">Name is required</mat-error>
+              <mat-error *ngIf="hasError('custId', 'maxlength')">You have more than 60 characters</mat-error>
+            </mat-form-field>
+
+            <mat-form-field [formGroup]="ownerForm">
+              <input matInput type="text" placeholder="CustSoldTo" formControlName="custSoldTo" id="custSoldTo"> 
+              <mat-hint align="end">Not more then 10 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('custSoldTo', 'required')">Name is required</mat-error>
+              <mat-error *ngIf="hasError('custSoldTo', 'maxlength')">You have more than 60 characters</mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field [formGroup]="ownerForm">
+              <input matInput type="text" placeholder="CustShipTo" formControlName="custShipTo" id="custShipTo"> 
+              <mat-hint align="end">Not more then 10 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('custShipTo', 'required')">Name is required</mat-error>
+              <mat-error *ngIf="hasError('custShipTo', 'maxlength')">You have more than 60 characters</mat-error>
+            </mat-form-field>
+
+            <mat-form-field [formGroup]="ownerForm">
+              <input matInput type="text" placeholder="ShipTo" formControlName="shipTo" id="shipTo"> 
+              <mat-hint align="end">Not more then 10 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('shipTo', 'required')">Name is required</mat-error>
+              <mat-error *ngIf="hasError('shipTo', 'maxlength')">You have more than 60 characters</mat-error>
+            </mat-form-field>
+
+            <mat-form-field [formGroup]="ownerForm">
+              <input matInput type="text" placeholder="Barcode" formControlName="barcode" id="barcode"> 
+              <mat-hint align="end">Not more then 10 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('barcode', 'required')">Name is required</mat-error>
+              <mat-error *ngIf="hasError('barcode', 'maxlength')">You have more than 60 characters</mat-error>
+            </mat-form-field>
+  
+        </mat-card-content>
+        <mat-card-actions align="center">
+          
+            <button mat-raised-button color="primary" [disabled]="!ownerForm.valid" type="submit">{{elem ? 'Update' : 'Create'}}</button>
+            <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+          </mat-card-actions>
+      </mat-card>
+    </form>
+      
+    </section>
+  

@@ -1,0 +1,121 @@
+<nav aria-label="breadcrumb">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">{{breadcrumpPath.home}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{breadcrumpPath.name}}</li>
+    </ul>
+</nav>
+
+
+
+<div  class="col-sm-4">
+    <form  [formGroup]="ownerForm"  (ngSubmit)="selectRole(ownerForm.value)">
+        <div class="row" style="margin-top:50px;">
+          <div class="col-sm-3" [formGroup]="ownerForm" >
+            
+              
+                <mat-form-field   style="margin-top: 15px;">
+                    <mat-label>Role name</mat-label>
+                    <mat-select  formControlName="role" id="role">
+                        <mat-option *ngFor="let role of roles" [value]="role.id">
+                        {{ role.rolename }}
+                        </mat-option>               
+                    </mat-select>
+                    <mat-hint align="end">Role name required</mat-hint>
+                    <mat-error *ngIf="hasError('role', 'required')">Role name is required</mat-error>
+                    </mat-form-field>
+            
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-primary " mat-flat-button type="submit"  style="margin-right: 4px;margin-top: 10px;">Select role</button>                           
+                    </div>                                         
+                </div>        
+            </div>
+    </div>
+         
+         
+</form>
+</div>
+
+<mat-divider></mat-divider>
+<br>
+
+<div fxLayout fxLayout.lt-md="column wrap" fxLayoutAlign="center center" fxLayoutGap.gt-sm="350px" fxLayoutGap.lt.md="20px">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input style="width: 400px;">
+  </mat-form-field>
+    <div>
+      <a  mat-button color="primary" (click)="openModal(null)" >Add new record</a>
+    </div>
+  </div>
+
+  <br>
+ 
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">    
+    <div fxFlex="100"><div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource"> 
+      
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="rolename">
+            <th mat-header-cell *matHeaderCellDef> Role </th>
+            <td mat-cell *matCellDef="let element"> {{element.roleName}} </td>
+          </ng-container>        
+          
+          <ng-container matColumnDef="actionname">
+            <th mat-header-cell *matHeaderCellDef> Action name </th>
+            <td mat-cell *matCellDef="let element"> {{element.actionName}} </td>
+          </ng-container>        
+
+          <ng-container matColumnDef="displayname">
+            <th mat-header-cell *matHeaderCellDef> Display name </th>
+            <td mat-cell *matCellDef="let element"> {{element.displayName}} </td>
+          </ng-container>        
+
+          <ng-container matColumnDef="cancreate">
+            <th mat-header-cell *matHeaderCellDef> CanCreate </th>
+            <td mat-cell *matCellDef="let element"> {{element.canCreate==1?'Yes':'No'}} </td>
+          </ng-container>  
+
+          <ng-container matColumnDef="canupdate">
+            <th mat-header-cell *matHeaderCellDef> CanUpdate </th>
+            <td mat-cell *matCellDef="let element">  {{element.canUpdate==1?'Yes':'No'}} </td>
+          </ng-container>  
+
+          <ng-container matColumnDef="candelete">
+            <th mat-header-cell *matHeaderCellDef> CanDelete </th>
+            <td mat-cell *matCellDef="let element"> {{element.canDelete==1?'Yes':'No'}} </td>
+          </ng-container>  
+
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef>Delete  </th>
+            <td mat-cell *matCellDef="let element"> 
+              <button mat-mini-fab    class="removeBorder"  (click)="handleWarningAlert(element)" disabled>
+              <mat-icon class="pointer" >delete</mat-icon>
+            </button>              
+          </td> 
+          </ng-container>
+
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> Edit </th>
+            <td mat-cell *matCellDef="let element"> 
+              <button mat-mini-fab   (click)="openModal(element)" class="removeBorder"  disabled >
+              <mat-icon class="pointer" >edit</mat-icon>
+            </button>              
+          </td>
+        </ng-container>
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div></div>
+</div>
+
+

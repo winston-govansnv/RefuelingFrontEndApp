@@ -1,0 +1,135 @@
+<nav aria-label="breadcrumb">
+  <ul class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">{{breadcrumpPath.home}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{breadcrumpPath.second}}</li>
+    <li class="breadcrumb-item active" aria-current="page">{{breadcrumpPath.name}}</li>
+  </ul>
+</nav>
+<p>Please select the date interval</p>
+
+<form [formGroup]="myHistForm" (ngSubmit)="search()">
+  <div class="row" style="margin-top:50px;">
+    <div class="col-sm-3" [formGroup]="myHistForm">
+      <mat-form-field>
+        <mat-label>Driver</mat-label>
+        <mat-select formControlName="drivers">
+          <mat-option *ngFor="let item of drivers" [value]="item.id">
+            {{ item.fullname }}
+          </mat-option>
+        </mat-select>
+        <mat-icon matSuffix>directions_bus</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+
+
+  <div class="row" style="margin-top:50px;">
+    <div class="col-sm-3" [formGroup]="myHistForm">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose start date" formControlName="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+
+    </div>
+    <div class="col-sm-3" [formGroup]="myHistForm">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker2" placeholder="Choose end date" formControlName="picker2">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary" mat-flat-button type="submit"
+        style="margin-right: 4px;margin-top: 10px;">Submit</button>
+      <button class="btn btn-warning" mat-flat-button type="button" style="margin-top: 10px;"
+        (click)=clear()>Clear</button>
+    </div>
+
+  </div>
+</form>
+
+<mat-divider></mat-divider>
+<br>
+
+<div *ngIf="!isValid " class="alert alert-danger">
+  <div *ngIf="!isValid ">Driver, Start date and end date are required.</div>
+</div>
+
+<div *ngIf="noDataFound" class="alert alert-warning">
+  <div *ngIf="noDataFound ">No records found within the specified dates.</div>
+</div>
+
+<div class="box" style="width: 100%" [hidden]="noDataFound">
+  <div>
+    <button class="removeBorder  mat-icon-blue" (click)="print()">
+      <mat-icon class="mat-icon-white">print</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" [hidden]="noDataFound">
+  <div class="mat-elevation-z8" style="width: 100%;">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="deliveryDate">
+        <th mat-header-cell *matHeaderCellDef> DeliveryDate</th>
+        <td mat-cell *matCellDef="let element"> {{element.deliveryDate| date }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="driver">
+        <th mat-header-cell *matHeaderCellDef> Driver</th>
+        <td mat-cell *matCellDef="let element"> {{element.driver }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="badgeNumber">
+        <th mat-header-cell *matHeaderCellDef> Badge number</th>
+        <td mat-cell *matCellDef="let element"> {{element.badgeNumber }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="truck">
+        <th mat-header-cell *matHeaderCellDef> Truck </th>
+        <td mat-cell *matCellDef="let element"> {{element.truckNumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="customer">
+        <th mat-header-cell *matHeaderCellDef> Customer </th>
+        <td mat-cell *matCellDef="let element"> {{element.clientName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fuelType">
+        <th mat-header-cell *matHeaderCellDef> Fueltype </th>
+        <td mat-cell *matCellDef="let element"> {{element.fuelType}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fuelLiters">
+        <th mat-header-cell *matHeaderCellDef> Fuel (Liters) </th>
+        <td mat-cell *matCellDef="let element"> {{element.toDeliveryVolume}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="est-starttime">
+        <th mat-header-cell *matHeaderCellDef> StartTime </th>
+        <td mat-cell *matCellDef="let element"> {{element.estimatedDeliveryStartTime |date:'shortTime'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="est-endtime">
+        <th mat-header-cell *matHeaderCellDef> EndTime </th>
+        <td mat-cell *matCellDef="let element"> {{element.estimatedDeliveryEndTime |date:'shortTime'}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  </div>
+</div>

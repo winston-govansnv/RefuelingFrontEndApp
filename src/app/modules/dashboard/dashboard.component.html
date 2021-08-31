@@ -1,0 +1,32 @@
+<nav aria-label="breadcrumb">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">{{breadcrumpPath.home}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{breadcrumpPath.second}}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{breadcrumpPath.name}}</li>
+    </ul>
+</nav>
+<div>
+    <app-widget-area  ></app-widget-area>
+</div>
+
+<mat-divider></mat-divider>
+<br>
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
+    <mat-card fxFlex="18">
+        <app-widget-card label="Unl. Premium" total="{{unleadedPremiumTotal}}" percentage="{{unleadedPremiumPerc}}"></app-widget-card>
+    </mat-card>
+    <mat-card fxFlex="18">
+        <app-widget-card label="Diesel" total="{{dieselotal}}" percentage="{{dieselPerc}}"></app-widget-card>
+    </mat-card>
+    <mat-card fxFlex="18">
+        <app-widget-card label="Kerosene" total="{{keroseneTotal}}" percentage="{{kerosenePerc}}"></app-widget-card>
+    </mat-card>
+    <mat-card fxFlex="18">
+        <app-widget-card label="95-COM" total="{{info95ConTotal}}" percentage="{{info95ConPerc}}"></app-widget-card>
+    </mat-card>
+    <mat-card fxFlex="18">
+      <app-widget-card label="LSD-NRLM" total="{{lsdnrlmTotal}}" percentage="{{lsdnrlmPerc}}"></app-widget-card>
+  </mat-card>
+</div>
+

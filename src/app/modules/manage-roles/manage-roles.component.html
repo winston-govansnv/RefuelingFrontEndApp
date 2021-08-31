@@ -1,0 +1,62 @@
+<nav aria-label="breadcrumb">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">{{breadcrumpPath.home}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{breadcrumpPath.name}}</li>
+    </ul>
+    </nav>
+
+
+<div fxLayout fxLayout.lt-md="column wrap" fxLayoutAlign="center center" fxLayoutGap.gt-sm="350px" fxLayoutGap.lt.md="20px">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input style="width: 400px;">
+  </mat-form-field>
+    <div>
+      <a  mat-button color="primary" (click)="openModalDriver(null)">Add new record</a>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+  <br>
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">    
+    <div fxFlex="80"><div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource"> 
+      
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="rolename">
+            <th mat-header-cell *matHeaderCellDef> Role </th>
+            <td mat-cell *matCellDef="let element"> {{element.rolename}} </td>
+          </ng-container>         
+
+          <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef>Delete  </th>
+            <td mat-cell *matCellDef="let element"> 
+              <button mat-mini-fab    class="removeBorder"  (click)="handleWarningAlert(element)">
+              <mat-icon class="pointer" >delete</mat-icon>
+            </button>              
+          </td>
+          </ng-container>
+
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> Edit </th>
+            <td mat-cell *matCellDef="let element"> 
+              <button mat-mini-fab    class="removeBorder" (click)="itemSelected(element)">
+              <mat-icon class="pointer" >edit</mat-icon>
+            </button>              
+          </td>
+        </ng-container>
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div></div>
+</div>
+

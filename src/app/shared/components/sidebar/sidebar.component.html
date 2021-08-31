@@ -1,0 +1,41 @@
+<mat-nav-list dense>
+  
+    <h2 matSubheader >Pages</h2>
+
+    <!-- <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+        <mat-expansion-panel-header>
+            Dashboard
+        </mat-expansion-panel-header>
+        <mat-nav-list dense>
+            <a mat-list-item routerLink="/dashboard"><mat-icon>bar_chart</mat-icon>Summarized deliveries</a>
+            <a mat-list-item routerLink="/dashboard-delivery"><mat-icon>view_day</mat-icon>Track deliveries</a>
+        </mat-nav-list>
+    </mat-expansion-panel> -->
+
+    <a mat-list-item routerLinkActive="list-item-active" *ngFor="let item of sideBarList" routerLink="/{{item.actionName}}" >
+        <mat-icon >{{item.iconName}}</mat-icon>   
+        {{item.displayName}} 
+    </a>
+
+     <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+        <mat-expansion-panel-header style="font-size: small;">
+            Reports  
+        </mat-expansion-panel-header> 
+        <mat-nav-list dense>
+            <a mat-list-item routerLinkActive="list-item-active" *ngFor="let item of sideBarReportList" routerLink="/{{item.actionName}}" >
+                <mat-icon >{{item.iconName}}</mat-icon>   
+                {{item.displayName}} 
+            </a>
+        </mat-nav-list>
+    </mat-expansion-panel>
+
+    <mat-divider *ngIf="sideBarAdminList"></mat-divider>
+    
+    <h2 *ngIf="sideBarAdminList" matSubheader>Administration</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" *ngFor="let item of sideBarAdminList" routerLink="/{{item.actionName}}" >
+        <mat-icon >{{item.iconName}}</mat-icon>   
+        {{item.displayName}} 
+    </a>
+ 
+</mat-nav-list>

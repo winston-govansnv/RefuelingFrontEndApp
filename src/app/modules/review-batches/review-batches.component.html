@@ -1,0 +1,125 @@
+<nav aria-label="breadcrumb">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">{{breadcrumpPath.home}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{breadcrumpPath.name}}</li>
+    </ul>
+</nav>
+
+
+<form  [formGroup]="myHistForm" (ngSubmit) = "getList()">
+    <table >
+      <tr>
+        <td >
+          <div class="row" >
+                    
+            <div class="col-sm-3" [formGroup]="myHistForm" >
+              <mat-form-field >
+                <input matInput [matDatepicker]="picker"  placeholder="Choose start date" formControlName="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>                  
+            </div>
+
+            <div class="form-group" >
+              <button class="btn btn-primary" mat-flat-button type="submit"  style="margin-top: 10px;" >Filter</button>
+            </div>    
+            
+            
+        </div>
+        </td>
+    </tr> 
+    
+  </table>
+  </form> 
+
+  
+  <mat-divider></mat-divider>
+  <br>
+
+  <app-batch-record #child [startDate]="startDate" (refreshComponents)="getList()"></app-batch-record>
+  <br>
+  <br>
+ 
+  <div *ngIf="noDataFound" class="alert alert-warning">
+    <div *ngIf="noDataFound ">No records found.</div>
+  </div>
+  
+  
+  <div [hidden]="noDataFound" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">    
+    <div fxFlex="100"><div class="mat-elevation-z8">
+        <table mat-table [dataSource]="parentDataSource" >
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Planning id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="deliveryDate">
+            <th mat-header-cell *matHeaderCellDef> Est. Delivery datetime </th>
+            <td mat-cell *matCellDef="let element"> {{element.deliveryDate|date: "dd-MMM-yyyy hh:mm a" }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="truckno">
+            <th mat-header-cell *matHeaderCellDef> Truck no. </th>
+            <td mat-cell *matCellDef="let element"> {{element.truckNumber}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="driver">
+            <th mat-header-cell *matHeaderCellDef> Driver </th>
+            <td mat-cell *matCellDef="let element"> {{element.driver}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="customer">
+            <th mat-header-cell *matHeaderCellDef> Customer </th>
+            <td mat-cell *matCellDef="let element"> {{element.clientName}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="plannedvolume">
+            <th mat-header-cell *matHeaderCellDef> Planned volume</th>
+            <td mat-cell *matCellDef="let element"> {{element.toDeliveryVolume}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="fueltype">
+            <th mat-header-cell *matHeaderCellDef> Fueltype </th>
+            <td mat-cell *matCellDef="let element"> {{element.fuelType}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="fuelvolume">
+            <th mat-header-cell *matHeaderCellDef> Delivered volume</th>
+            <td mat-cell *matCellDef="let element"> {{element.totalFueled}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actualstart" >
+            <th mat-header-cell *matHeaderCellDef > Delivery start </th>
+            <td mat-cell *matCellDef="let element"> <p  style="margin-top: 15px;" [ngClass]="{'hide':element.totalFueled===0}">{{element.startTime | date:'shortTime'}} </p></td>
+          </ng-container>
+
+          <ng-container matColumnDef="actualend" >
+            <th mat-header-cell *matHeaderCellDef > Delivery end </th>
+            <td mat-cell *matCellDef="let element"> <p style="margin-top: 15px;" [ngClass]="{'hide':element.totalFueled===0}">{{element.endTime | date:'shortTime'}} </p></td>
+          </ng-container>
+
+          <ng-container matColumnDef="status" >
+            <th mat-header-cell *matHeaderCellDef style="padding-right: 30px;"> Status</th>
+            <td mat-cell *matCellDef="let element" > <p style="margin-top: 15px;">{{element.delivered===1?'Delivered':'Pending'}}</p></td>
+          </ng-container>
+
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> Edit </th>
+            <td mat-cell *matCellDef="let element"> 
+              <button mat-mini-fab    class="removeBorder" (click)="itemSelected(element)" [disabled]="element.closedBatch===1">
+              <mat-icon class="pointer" >edit</mat-icon>
+            </button>              
+          </td>
+        </ng-container>
+ 
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div></div>
+
+</div>
+

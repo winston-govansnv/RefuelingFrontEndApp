@@ -1,0 +1,33 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <form  [formGroup]="ownerForm" (ngSubmit) = "onClickSubmit(ownerForm.value)" >
+      <mat-card fxFlex="100" fxFlex.xs="100%">
+      
+        <mat-card-title>{{elem ? 'Update fuel price information' : 'Add a new fuel price'}}</mat-card-title>
+        <mat-card-content >
+          
+            <mat-form-field [formGroup]="ownerForm" >
+                <input matInput type="text" placeholder="FuelType name" formControlName="fuelTypeName" id="fuelTypeName" >
+                <mat-hint align="end">Not more then 20 characters long.</mat-hint>
+                <mat-error *ngIf="hasError('fuelTypeName', 'required')">Name is required</mat-error>
+                <mat-error *ngIf="hasError('fuelTypeName', 'maxlength')">You have more than 20 characters</mat-error>
+            </mat-form-field>
+
+            <mat-form-field [formGroup]="ownerForm">
+                <input matInput type="text" placeholder="Fuel Price In AWG" formControlName="fuelPriceInAWG" id="fuelPriceInAWG"> 
+                <mat-hint align="end">Not more then 10 characters long.</mat-hint>
+                <mat-error *ngIf="hasError('fuelPriceInAWG', 'required')">Name is required</mat-error>
+                <mat-error *ngIf="hasError('fuelPriceInAWG', 'maxlength')">You have more than 10 characters</mat-error>
+              </mat-form-field>
+
+           
+        </mat-card-content>
+        <mat-card-actions align="center">
+          
+            <button mat-raised-button color="primary" [disabled]="!ownerForm.valid" type="submit">{{elem ? 'Update' : 'Create'}}</button>
+            <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+          </mat-card-actions>
+      </mat-card>
+    </form>
+      
+    </section>
+  

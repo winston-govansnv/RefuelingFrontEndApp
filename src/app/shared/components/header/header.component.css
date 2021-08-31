@@ -1,0 +1,15 @@
+ul li{
+    list-style: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+mat-toolbar{
+    background-color: #444;
+}
+
+.bar{
+    background-color: orange;
+}

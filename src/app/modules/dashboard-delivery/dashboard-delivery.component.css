@@ -1,0 +1,16 @@
+table {
+    width: 100%;
+
+}
+
+.green-icon {
+    color: green;
+}
+
+.grey-icon {
+  color: lightgrey;
+}
+
+.hide{
+  visibility: hidden;
+}
